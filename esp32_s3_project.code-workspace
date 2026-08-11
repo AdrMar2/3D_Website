@@ -1,0 +1,28 @@
+{
+	"folders": [
+		{
+			"path": "../../Documents/PlatformIO/Projects/esp32_s3_project"
+		},
+		{
+			"name": "PWM_sterownik",
+			"path": "../../Documents/PlatformIO/Projects/PWM_sterownik"
+		},
+		{
+			"name": "web_server",
+			"path": "../../Documents/PlatformIO/Projects/web_server"
+		},
+		{
+			"name": "TEST_ESP",
+			"path": "../../Documents/PlatformIO/Projects/TEST_ESP"
+		},
+		{
+			"name": "arduinoPWMControler",
+			"path": "../../Documents/PlatformIO/Projects/arduinoPWMControler"
+		},
+		{
+			"name": "ArduinoUNOR3",
+			"path": "../../Documents/PlatformIO/Projects/ArduinoUNOR3"
+		}
+	],
+	"settings": {}
+}
