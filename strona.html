@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMR 3D — Druk 3D i Elektronika na zamówienie</title>
+<meta name="description" content="Druk 3D i projektowanie elektroniki na zamówienie — prototypy, obudowy, płytki PCB i małe serie. Wymiary do 270×270×270mm, druk wielokolorowy, mikrokontrolery ESP32.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="AMR 3D — Druk 3D i Elektronika na zamówienie">
+<meta property="og:description" content="Prototypy, obudowy, płytki PCB i małe serie — od pomysłu do gotowego egzemplarza. Sprawdź, co mogę dla Ciebie zbudować.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&q=80">
+<meta property="og:url" content="https://amr3d.pl">
+<meta property="og:locale" content="pl_PL">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AMR 3D — Druk 3D i Elektronika na zamówienie">
+<meta name="twitter:description" content="Prototypy, obudowy, płytki PCB i małe serie — od pomysłu do gotowego egzemplarza.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&q=80">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter', sans-serif; color:#1E2A3C; background:#fff;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  img{max-width:100%; display:block;}
+  ul{list-style:none;}
+ 
+  :root{
+    --navy-dark:#14181F;
+    --navy:#1D222B;
+    --navy-light:#2A303B;
+    --orange:#E8A33D;
+    --blue:#2F8F5B;
+    --ink:#14181F;
+    --muted:#5C6470;
+    --bg-light:#F4F5F7;
+    --line:#E1E3E8;
+  }
+  .display{ font-family:'Sora', sans-serif; }
+  .mono{ font-family:'JetBrains Mono', monospace; }
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
+ 
+  /* ---------- HEADER ---------- */
+  header{
+    background:var(--navy-dark); display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; position:sticky; top:0; z-index:50; border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .logo{ display:flex; align-items:center; gap:8px; font-family:'Manrope', sans-serif; font-weight:800; font-size:17px; color:#fff; }
+  .logo .cube{ width:26px; height:26px; background:var(--orange); border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; }
+  nav{ display:flex; gap:30px; }
+  nav a{ font-size:13.5px; font-weight:600; color:#C7D0DC; }
+  nav a:hover{ color:#fff; }
+  .cta-header{ background:var(--orange); color:#14181F; padding:11px 22px; border-radius:6px; font-size:13px; font-weight:800; letter-spacing:.02em; }
+
+  .menu-toggle{ display:none; flex-direction:column; gap:5px; background:none; padding:6px; }
+  .menu-toggle span{ width:22px; height:2px; background:#fff; border-radius:2px; transition:.2s; }
+  .menu-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2){ opacity:0; }
+  .menu-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav{ display:none; position:fixed; top:63px; left:0; right:0; background:var(--navy-dark); border-bottom:1px solid rgba(255,255,255,.08); padding:10px 32px 26px; flex-direction:column; gap:4px; z-index:49; }
+  .mobile-nav.open{ display:flex; }
+  .mobile-nav a{ font-size:14.5px; font-weight:600; color:#C7D0DC; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.06); }
+  .mobile-nav a.active{ color:var(--orange); }
+  .mobile-nav .cta-header{ text-align:center; margin-top:14px; }
+ 
+  /* ---------- HERO ---------- */
+  .hero{ background:linear-gradient(135deg, var(--navy-dark), var(--navy-light)); padding:100px 0 96px; position:relative; overflow:hidden; }
+  .hero .wrap{ max-width:700px; margin:0 auto; text-align:center; }
+  .hero .eyebrow{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--orange); background:rgba(245,130,31,.12); border:1px solid rgba(245,130,31,.3); padding:6px 14px; border-radius:20px; margin-bottom:22px; }
+  .hero h1{ font-family:'Manrope', sans-serif; font-weight:800; font-size:44px; line-height:1.14; color:#fff; margin-bottom:16px; }
+  .hero h1 span{ color:var(--orange); }
+  .hero .sub{ font-size:15.5px; color:#B7C2CF; line-height:1.6; max-width:48ch; margin:0 auto 34px; }
+  .hero-cta-row{ display:flex; align-items:center; justify-content:center; gap:22px; }
+  .hero-cta{ background:var(--orange); color:#14181F; padding:14px 28px; border-radius:8px; font-weight:800; font-size:14px; display:inline-block; }
+  .hero-cta-secondary{ font-size:13.5px; font-weight:700; color:#C7D0DC; }
+  .hero-cta-secondary:hover{ color:#fff; }
+  .hero-note{ margin-top:18px; font-size:12.5px; color:#8695A6; }
+ 
+  /* ---------- SERVICES ---------- */
+  .services{ padding:80px 0; background:#fff; }
+  .sec-head{ text-align:center; margin-bottom:44px; }
+  .sec-head .eyebrow-line{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--blue); letter-spacing:.1em; margin-bottom:12px; }
+  .sec-head h2{ font-family:'Manrope', sans-serif; font-weight:800; font-size:28px; }
+  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .svc-card{ border:1px solid var(--line); border-radius:12px; overflow:hidden; transition:transform .15s; }
+  .svc-card:hover{ transform:translateY(-4px); box-shadow:0 16px 30px rgba(30,42,60,.1); }
+  .svc-visual{ aspect-ratio:16/11; background:var(--bg-light); display:flex; align-items:center; justify-content:center; }
+  .svc-visual svg{ width:60%; height:60%; }
+  .svc-label{ display:flex; align-items:center; gap:12px; padding:16px 20px; }
+  .svc-label.orange{ background:var(--orange); }
+  .svc-label.blue{ background:var(--blue); }
+  .svc-label.navy{ background:var(--navy); }
+  .svc-label .ic{ width:32px; height:32px; border-radius:8px; background:rgba(255,255,255,.2); display:flex; align-items:center; justify-content:center; font-size:15px; }
+  .svc-label div b{ display:block; color:#fff; font-size:14px; font-weight:700; letter-spacing:.02em; }
+  .svc-label div span{ display:block; color:rgba(255,255,255,.75); font-size:11.5px; margin-top:2px; }
+
+  .cap-group-label{ display:flex; align-items:center; gap:10px; font-family:'Manrope', sans-serif; font-weight:700; font-size:15px; color:var(--ink); margin-bottom:18px; }
+  .cap-group-label .dot{ width:9px; height:9px; border-radius:50%; }
+  .cap-group-label .dot.orange{ background:var(--orange); }
+  .cap-group-label .dot.blue{ background:var(--blue); }
+  .cap-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .cap-grid-4{ grid-template-columns:repeat(4,1fr); }
+  .cap-card{ border:1px solid var(--line); border-radius:12px; padding:24px; background:#fff; transition:transform .15s; }
+  .cap-card:hover{ transform:translateY(-4px); box-shadow:0 16px 30px rgba(30,42,60,.08); }
+  .cap-icon{ width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:17px; margin-bottom:16px; }
+  .cap-icon.orange{ background:rgba(232,163,61,.15); }
+  .cap-icon.blue{ background:rgba(47,143,91,.15); }
+  .cap-card h3{ font-family:'Manrope', sans-serif; font-weight:700; font-size:15px; margin-bottom:8px; }
+  .cap-card p{ font-size:12.5px; color:var(--muted); line-height:1.55; margin-bottom:14px; }
+  .cap-card .cap-spec{ font-family:'JetBrains Mono',monospace; font-size:14px; font-weight:600; color:var(--ink); padding-top:12px; border-top:1px solid var(--line); }
+ 
+  /* ---------- MATERIALS ---------- */
+  .materials{ padding:80px 0; background:var(--bg-light); }
+  .mat-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .mat-card{ background:var(--navy); border-radius:14px; padding:26px; color:#fff; }
+  .mat-icon{ width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
+  .mat-card h3{ font-family:'Manrope', sans-serif; font-weight:700; font-size:17px; margin-bottom:2px; }
+  .mat-card .sub{ font-size:12px; color:#9FB0C2; margin-bottom:14px; }
+  .mat-card p{ font-size:12.5px; color:#C7D0DC; line-height:1.6; }
+  .mat-card .spec{ margin-top:14px; padding-top:14px; border-top:1px solid rgba(255,255,255,.12); font-family:'JetBrains Mono',monospace; font-size:11px; color:#8FA0B4; display:flex; justify-content:space-between; }
+ 
+  /* ---------- PORTFOLIO ---------- */
+  .portfolio{ padding:80px 0; background:#fff; }
+  .port-head{ display:flex; justify-content:space-between; align-items:baseline; margin-bottom:36px; }
+  .port-head .eyebrow-line{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--blue); letter-spacing:.1em; margin-bottom:12px; }
+  .port-head h2{ font-family:'Manrope', sans-serif; font-weight:800; font-size:28px; }
+  .port-head span{ font-size:13px; color:var(--muted); }
+  .port-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  .port-card{ border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .port-card .img{ aspect-ratio:4/3; background:#EAEAEA; position:relative; }
+  .port-card .img img{ width:100%; height:100%; object-fit:cover; }
+  .port-card .tag-float{ position:absolute; top:12px; left:12px; display:flex; gap:6px; }
+  .port-card .tag-float span{ font-family:'JetBrains Mono',monospace; font-size:9.5px; background:rgba(27,40,57,.85); color:#fff; padding:4px 8px; border-radius:4px; }
+  .port-body{ padding:18px; }
+  .port-body h4{ font-family:'Manrope', sans-serif; font-size:15px; font-weight:700; margin-bottom:6px; }
+  .port-body p{ font-size:12.5px; color:var(--muted); line-height:1.55; margin-bottom:14px; }
+  .port-link{ font-size:12.5px; font-weight:700; color:var(--blue); display:inline-flex; align-items:center; gap:6px; }
+ 
+  /* ---------- CTA STRIP ---------- */
+  .cta-strip{ background:linear-gradient(135deg, var(--navy-dark), var(--navy)); padding:60px 0; text-align:center; }
+  .cta-strip h2{ font-family:'Manrope', sans-serif; font-weight:800; font-size:26px; color:#fff; margin-bottom:14px; }
+  .cta-strip p{ color:#B7C2CF; margin-bottom:26px; font-size:14.5px; }
+  .cta-strip .btn{ background:var(--orange); color:#14181F; padding:14px 30px; border-radius:8px; font-weight:800; font-size:14px; display:inline-block; }
+ 
+  /* ---------- CONTACT FORM ---------- */
+  .contact-section{ padding:80px 0 90px; background:var(--bg-light); }
+  .contact-form{ max-width:680px; margin:0 auto; display:flex; flex-direction:column; gap:18px; }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .form-field{ display:flex; flex-direction:column; gap:7px; }
+  .form-field label{ font-size:12.5px; font-weight:600; color:var(--ink); }
+  .form-field input, .form-field textarea{
+    font-family:'Inter', sans-serif; font-size:13.5px; padding:12px 14px; border:1px solid var(--line);
+    border-radius:8px; background:#fff; color:var(--ink); resize:vertical;
+  }
+  .form-field input:focus, .form-field textarea:focus{ outline:none; border-color:var(--orange); }
+  .contact-form .hero-cta{ border:none; cursor:pointer; }
+  .form-note{ font-size:13px; color:var(--blue); font-weight:600; min-height:18px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--navy-dark); color:#B7C2CF; padding:60px 0 30px; }
+  .foot-grid{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .foot-grid h5{ color:#fff; font-size:13px; font-weight:700; margin-bottom:16px; letter-spacing:.04em; text-transform:uppercase; }
+  .foot-grid p{ font-size:13px; line-height:1.6; color:#9FB0C2; margin-bottom:16px; max-width:34ch; }
+  .foot-grid li{ font-size:13px; margin-bottom:10px; color:#B7C2CF; }
+  .foot-grid li:hover{ color:#fff; }
+  .foot-formats{ display:flex; gap:8px; flex-wrap:wrap; }
+  .foot-formats span{ font-family:'JetBrains Mono',monospace; font-size:11px; border:1px solid rgba(255,255,255,.15); padding:6px 10px; border-radius:5px; color:#C7D0DC; }
+  .foot-bottom{ padding-top:22px; display:flex; justify-content:space-between; font-size:12px; color:#7488A0; }
+ 
+  @media (max-width:900px){
+    nav{ display:none; }
+    .menu-toggle{ display:flex; }
+    #ctaHeaderMain{ display:none; }
+    .services-grid{ grid-template-columns:1fr; }
+    .cap-grid, .cap-grid-4{ grid-template-columns:1fr; }
+    .mat-grid{ grid-template-columns:1fr; }
+    .port-grid{ grid-template-columns:repeat(2,1fr); }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+    .form-row{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+ 
+<header>
+  <div class="logo"><div class="cube">3D</div>AMR<span style="color:#E8A33D">3D</span></div>
+  <nav>
+    <a href="#">Główna</a>
+    <a href="#uslugi">Usługi</a>
+    <a href="realizacje.html">Realizacje</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+  <a href="kontakt.html" class="cta-header" id="ctaHeaderMain">ZAMÓW WYCENĘ</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#">Główna</a>
+  <a href="#uslugi">Usługi</a>
+  <a href="realizacje.html">Realizacje</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a href="kontakt.html" class="cta-header">ZAMÓW WYCENĘ</a>
+</div>
+ 
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">DRUK 3D + PROJEKTOWANIE ELEKTRONIKI</div>
+    <h1 class="display">Twój pomysł. <span>Moja technologia.</span></h1>
+    <p class="sub">Zajmuję się drukiem 3D oraz projektowaniem elektroniki na zamówienie. Przygotowuję prototypy, obudowy i małe serie, a do tego projektuję i uruchamiam elektronikę, która je napędza — od pomysłu, przez model i schemat, aż po gotowy, działający egzemplarz.</p>
+    <div class="hero-cta-row">
+      <a href="kontakt.html" class="hero-cta">Zamów wycenę</a>
+      <a href="#uslugi" class="hero-cta-secondary">Zobacz usługi →</a>
+    </div>
+    <div class="hero-note">Odpowiadam na zapytania zwykle w ciągu 24 godzin.</div>
+  </div>
+</section>
+ 
+<section class="services" id="uslugi">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow-line">CO ROBIĘ</div>
+      <h2 class="display">Możliwości mojego parku maszynowego</h2>
+    </div>
+
+    <div class="cap-group-label">
+      <span class="dot orange"></span> Druk 3D
+    </div>
+    <div class="cap-grid">
+      <div class="cap-card">
+        <div class="cap-icon orange">📐</div>
+        <h3>Maksymalne wymiary wydruku</h3>
+        <p>Pojedynczy element mogę wydrukować w rozmiarze do</p>
+        <div class="cap-spec">270 × 270 × 270 mm</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon orange">🎨</div>
+        <h3>Druk wielokolorowy</h3>
+        <p>Możliwość łączenia kolorów w jednym wydruku, bez ręcznego malowania</p>
+        <div class="cap-spec">do 4 kolorów</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon orange">🖨️</div>
+        <h3>Technologia druku</h3>
+        <p>Druk warstwowy z filamentu — sprawdzony w prototypach i małych seriach</p>
+        <div class="cap-spec">FDM</div>
+      </div>
+    </div>
+
+    <div class="cap-group-label" style="margin-top:44px;">
+      <span class="dot blue"></span> Elektronika
+    </div>
+    <div class="cap-grid cap-grid-4">
+      <div class="cap-card">
+        <div class="cap-icon blue">🧠</div>
+        <h3>Mikrokontrolery</h3>
+        <p>Projekty budowane w oparciu o</p>
+        <div class="cap-spec">ESP32</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon blue">🔥</div>
+        <h3>Lutowanie podzespołów</h3>
+        <p>Montaż i lutowanie ręczne komponentów</p>
+        <div class="cap-spec">SMD i THT</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon blue">🔌</div>
+        <h3>Projektowanie PCB</h3>
+        <p>Tworzenie prototypowych płytek — od schematu po gotową płytkę</p>
+        <div class="cap-spec">Prototyp PCB</div>
+      </div>
+      <div class="cap-card">
+        <div class="cap-icon blue">🤖</div>
+        <h3>Stacje i układy specjalne</h3>
+        <p>Budowa stacji testowych, pomiarowych oraz</p>
+        <div class="cap-spec">układów robotycznych</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="materials" id="materialy">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow-line">MATERIAŁY</div>
+      <h2 class="display">Najczęściej wybierane opcje</h2>
+    </div>
+    <div class="mat-grid">
+      <div class="mat-card">
+        <div class="mat-icon" style="background:#5C6470">🧵</div>
+        <h3>PLA</h3>
+        <div class="sub">(Biotworzywo)</div>
+        <p>Sztywny, łatwy w druku, idealny do prototypów i modeli poglądowych.</p>
+        <div class="spec"><span>Wytrzyma do (Vicat)</span><span>~55°C</span></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon" style="background:#E8A33D">💧</div>
+        <h3>PET-G</h3>
+        <div class="sub">(Wytrzymały)</div>
+        <p>Odporny na wilgoć i uderzenia — dobry wybór do części funkcjonalnych.</p>
+        <div class="spec"><span>Wytrzyma do (Vicat)</span><span>~78°C</span></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon" style="background:#C24A3E">🔥</div>
+        <h3>ABS</h3>
+        <div class="sub">(Techniczny)</div>
+        <p>Wytrzymały i odporny na temperaturę — sprawdza się w elementach użytkowych.</p>
+        <div class="spec"><span>Wytrzyma do (Vicat)</span><span>~95°C</span></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon" style="background:#D6742F">☀️</div>
+        <h3>ASA</h3>
+        <div class="sub">(Odporny na UV)</div>
+        <p>Podobny do ABS, ale odporny na promieniowanie UV — do zastosowań na zewnątrz.</p>
+        <div class="spec"><span>Wytrzyma do (Vicat)</span><span>~94°C</span></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon" style="background:#8B7FD1">🧩</div>
+        <h3>TPU</h3>
+        <div class="sub">(Elastyczny)</div>
+        <p>Gumopodobny i elastyczny — do uszczelek, obudów z amortyzacją, elementów gięt­nych.</p>
+        <div class="spec"><span>Wytrzyma do (Vicat)</span><span>~65°C</span></div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-icon" style="background:#2F8F5B">⚙️</div>
+        <h3>Nylon (PA)</h3>
+        <div class="sub">(Bardzo wytrzymały)</div>
+        <p>Wysoka wytrzymałość mechaniczna i odporność na ścieranie — do części obciążanych.</p>
+        <div class="spec"><span>Wytrzyma do (Vicat)</span><span>~145°C</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="port-head">
+      <div>
+        <div class="eyebrow-line">WYBRANE PROJEKTY</div>
+        <h2 class="display">Portfolio i case studies</h2>
+      </div>
+      <span>4 z 23 realizacji</span>
+    </div>
+    <div class="port-grid">
+      <div class="port-card">
+        <div class="img">
+          <img src="robot.JPG" alt="">
+          <div class="tag-float"><span>DRUK 3D</span><span>ELEKTRONIKA</span></div>
+        </div>
+        <div class="port-body">
+          <h4>Robot mobilny</h4>
+          <p>Komunikacja bezprzewodowa + dedykowany kontroler </p>
+          <a href="realizacje.html" class="port-link">ZOBACZ WIĘCEJ →</a>
+        </div>
+      </div>
+      <div class="port-card">
+        <div class="img">
+          <img src="lampka1.JPG" alt="">
+          <div class="tag-float"><span>DRUK 3D</span></div>
+        </div>
+        <div class="port-body">
+          <h4>Lampka ozdobna</h4>
+          <p>Wykorzystanie filamentu transparentnego</p>
+          <a href="realizacje.html" class="port-link">ZOBACZ WIĘCEJ →</a>
+        </div>
+      </div>
+      <div class="port-card">
+        <div class="img">
+          <img src="streamdeck1.JPG" alt="">
+          <div class="tag-float"><span>DRUK 3D</span><span>ELEKTRONIKA</span></div>
+        </div>
+        <div class="port-body">
+          <h4>Stream Deck</h4>
+          <p>Uniwersalna konsola z możliwośćią przypisania skrótów klawiszowych</p>
+          <a href="realizacje.html" class="port-link">ZOBACZ WIĘCEJ →</a>
+        </div>
+      </div>
+      <div class="port-card">
+        <div class="img">
+          <img src="drazekzmianybieguw.jpg" alt="">
+          <div class="tag-float"><span>DRUK 3D</span></div>
+        </div>
+        <div class="port-body">
+          <h4>drążek zmiany biegów</h4>
+          <p>Stworzenie gotowego modelu na podstawie zdjęć</p>
+          <a href="realizacje.html" class="port-link">ZOBACZ WIĘCEJ →</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:34px;">
+      <a href="realizacje.html" class="hero-cta-secondary" style="color:var(--blue);">Zobacz wszystkie realizacje →</a>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <h2 class="display">Masz plik albo tylko pomysł na kartce?</h2>
+    <p>Napisz, co chcesz zbudować — odpowiem z wyceną i realnym terminem.</p>
+    <a href="#" class="btn">Napisz na Facebooku</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;"><div class="cube">3D</div>AMR<span style="color:#E8A33D">3D</span></div>
+        <p>Druk 3D i projektowanie elektroniki na zamówienie. Prototypy, małe serie i kompletne urządzenia — od pomysłu do działającego egzemplarza.</p>
+        <div class="foot-formats">
+          <span>STL</span><span>OBJ</span><span>3MF</span><span>STEP</span>
+        </div>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <ul>
+          <li>adrianmarciniak111@gmail.com</li>
+          <li>Łódź, Polska</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Mapa strony</h5>
+        <ul>
+          <li><a href="strona.html">Główna</a></li>
+          <li><a href="strona.html#uslugi">Usługi</a></li>
+          <li><a href="realizacje.html">Realizacje</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Social</h5>
+        <ul>
+          <li><a href="https://www.facebook.com/adrian.marciniak.79">Facebook</a></li>
+          <li><a href="https://www.instagram.com/amr_labs1/">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 AMR 3D — wszystkie prawa zastrzeżone</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Menu mobilne
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileNav = document.getElementById('mobileNav');
+  menuToggle.addEventListener('click', function(){
+    menuToggle.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menuToggle.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>

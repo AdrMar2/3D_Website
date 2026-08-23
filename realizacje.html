@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Realizacje — AMR 3D</title>
+<meta name="description" content="Zobacz zrealizowane projekty AMR 3D — druk 3D i elektronika na zamówienie: stacje IoT, sterowniki, prototypy i urządzenia zbudowane od pomysłu po gotowy egzemplarz.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Realizacje — AMR 3D">
+<meta property="og:description" content="Zobacz zrealizowane projekty łączące druk 3D i elektronikę — prototypy, stacje IoT, sterowniki i kompletne urządzenia.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&q=80">
+<meta property="og:url" content="https://amr3d.pl/realizacje.html">
+<meta property="og:locale" content="pl_PL">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Realizacje — AMR 3D">
+<meta name="twitter:description" content="Zobacz zrealizowane projekty łączące druk 3D i elektronikę.">
+<meta name="twitter:image" content="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&q=80">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter', sans-serif; color:#1E2A3C; background:#fff;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  img{max-width:100%; display:block;}
+  ul{list-style:none;}
+
+  :root{
+    --navy-dark:#14181F;
+    --navy:#1D222B;
+    --navy-light:#2A303B;
+    --orange:#E8A33D;
+    --blue:#2F8F5B;
+    --ink:#14181F;
+    --muted:#5C6470;
+    --bg-light:#F4F5F7;
+    --line:#E1E3E8;
+  }
+  .display{ font-family:'Sora', sans-serif; }
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    background:var(--navy-dark); display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; position:sticky; top:0; z-index:50; border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .logo{ display:flex; align-items:center; gap:8px; font-family:'Manrope', sans-serif; font-weight:800; font-size:17px; color:#fff; }
+  .logo .cube{ width:26px; height:26px; background:var(--orange); border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; }
+  nav{ display:flex; gap:30px; }
+  nav a{ font-size:13.5px; font-weight:600; color:#C7D0DC; }
+  nav a:hover, nav a.active{ color:#fff; }
+  .cta-header{ background:var(--orange); color:#14181F; padding:11px 22px; border-radius:6px; font-size:13px; font-weight:800; letter-spacing:.02em; }
+
+  .menu-toggle{ display:none; flex-direction:column; gap:5px; background:none; padding:6px; }
+  .menu-toggle span{ width:22px; height:2px; background:#fff; border-radius:2px; transition:.2s; }
+  .menu-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2){ opacity:0; }
+  .menu-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+
+  .mobile-nav{ display:none; position:fixed; top:63px; left:0; right:0; background:var(--navy-dark); border-bottom:1px solid rgba(255,255,255,.08); padding:10px 32px 26px; flex-direction:column; gap:4px; z-index:49; }
+  .mobile-nav.open{ display:flex; }
+  .mobile-nav a{ font-size:14.5px; font-weight:600; color:#C7D0DC; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.06); }
+  .mobile-nav a.active{ color:var(--orange); }
+  .mobile-nav .cta-header{ text-align:center; margin-top:14px; }
+
+  /* ---------- PAGE HERO ---------- */
+  .page-hero{ background:linear-gradient(135deg, var(--navy-dark), var(--navy-light)); padding:64px 0 54px; text-align:center; }
+  .page-hero .eyebrow{ display:inline-block; font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--orange); background:rgba(232,163,61,.12); border:1px solid rgba(232,163,61,.3); padding:6px 14px; border-radius:20px; margin-bottom:20px; }
+  .page-hero h1{ font-family:'Manrope', sans-serif; font-weight:800; font-size:36px; color:#fff; margin-bottom:14px; }
+  .page-hero p{ font-size:14.5px; color:#B7C2CF; max-width:56ch; margin:0 auto; line-height:1.6; }
+
+  /* ---------- FILTERS ---------- */
+  .filter-bar{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin:38px 0 6px; }
+  .filter-btn{ background:#fff; border:1px solid var(--line); color:var(--muted); padding:9px 18px; border-radius:20px; font-size:13px; font-weight:600; transition:.15s; }
+  .filter-btn:hover{ border-color:var(--navy-dark); color:var(--ink); }
+  .filter-btn.active{ background:var(--navy-dark); border-color:var(--navy-dark); color:#fff; }
+
+  /* ---------- PROJECT GRID ---------- */
+  .proj-section{ padding:36px 0 90px; }
+  .proj-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
+  .proj-card{ border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff; transition:transform .15s, box-shadow .15s; display:block; }
+  .proj-card:hover{ transform:translateY(-4px); box-shadow:0 16px 30px rgba(30,42,60,.1); }
+
+  .proj-slider{ position:relative; aspect-ratio:4/3; background:#EAEAEA; overflow:hidden; }
+  .proj-slider img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .8s ease; }
+  .proj-slider img.active{ opacity:1; }
+  .proj-tag-float{ position:absolute; top:12px; left:12px; display:flex; gap:6px; z-index:2; }
+  .proj-tag-float span{ font-family:'JetBrains Mono',monospace; font-size:9.5px; background:rgba(27,40,57,.85); color:#fff; padding:4px 8px; border-radius:4px; }
+  .proj-counter{ position:absolute; top:12px; right:12px; font-family:'JetBrains Mono',monospace; font-size:9.5px; background:rgba(27,40,57,.85); color:#fff; padding:4px 8px; border-radius:4px; z-index:2; }
+  .proj-dots{ position:absolute; bottom:10px; left:0; right:0; display:flex; justify-content:center; gap:5px; z-index:2; }
+  .proj-dots span{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.5); transition:.2s; }
+  .proj-dots span.active{ background:#fff; }
+
+  .proj-body{ padding:18px; }
+  .proj-body h4{ font-family:'Manrope', sans-serif; font-size:15px; font-weight:700; margin-bottom:6px; }
+  .proj-body p{ font-size:12.5px; color:var(--muted); line-height:1.55; }
+  .proj-meta{ display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+  .proj-meta span{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted); border:1px solid var(--line); padding:3px 8px; border-radius:5px; }
+
+  /* ---------- CTA STRIP ---------- */
+  .cta-strip{ background:linear-gradient(135deg, var(--navy-dark), var(--navy)); padding:60px 0; text-align:center; }
+  .cta-strip h2{ font-family:'Manrope', sans-serif; font-weight:800; font-size:26px; color:#fff; margin-bottom:14px; }
+  .cta-strip p{ color:#B7C2CF; margin-bottom:26px; font-size:14.5px; }
+  .cta-strip .btn{ background:var(--orange); color:#14181F; padding:14px 30px; border-radius:8px; font-weight:800; font-size:14px; display:inline-block; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--navy-dark); color:#B7C2CF; padding:60px 0 30px; }
+  .foot-grid{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .foot-grid h5{ color:#fff; font-size:13px; font-weight:700; margin-bottom:16px; letter-spacing:.04em; text-transform:uppercase; }
+  .foot-grid p{ font-size:13px; line-height:1.6; color:#9FB0C2; margin-bottom:16px; max-width:34ch; }
+  .foot-grid li{ font-size:13px; margin-bottom:10px; color:#B7C2CF; }
+  .foot-grid li:hover{ color:#fff; }
+  .foot-formats{ display:flex; gap:8px; flex-wrap:wrap; }
+  .foot-formats span{ font-family:'JetBrains Mono',monospace; font-size:11px; border:1px solid rgba(255,255,255,.15); padding:6px 10px; border-radius:5px; color:#C7D0DC; }
+  .foot-bottom{ padding-top:22px; display:flex; justify-content:space-between; font-size:12px; color:#7488A0; }
+
+  @media (max-width:900px){
+    nav{ display:none; }
+    .menu-toggle{ display:flex; }
+    #ctaHeaderMain{ display:none; }
+    .proj-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><div class="cube">3D</div>AMR<span style="color:#E8A33D">3D</span></div>
+  <nav>
+    <a href="strona.html">Główna</a>
+    <a href="strona.html#uslugi">Usługi</a>
+    <a href="realizacje.html" class="active">Realizacje</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+  <a href="kontakt.html" class="cta-header" id="ctaHeaderMain">ZAMÓW WYCENĘ</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="strona.html">Główna</a>
+  <a href="strona.html#uslugi">Usługi</a>
+  <a href="realizacje.html" class="active">Realizacje</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a href="kontakt.html" class="cta-header">ZAMÓW WYCENĘ</a>
+</div>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow">PORTFOLIO</div>
+    <h1 class="display">Zrealizowane projekty</h1>
+    <p>Wybrane prace łączące druk 3D i elektronikę — prototypy, obudowy, sterowniki i kompletne urządzenia zrealizowane od pomysłu po działający egzemplarz.</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">Wszystkie</button>
+    <button class="filter-btn" data-filter="druk">Druk 3D</button>
+    <button class="filter-btn" data-filter="elektronika">Elektronika</button>
+    <button class="filter-btn" data-filter="robotyka">Robotyka</button>
+  </div>
+</div>
+
+<section class="proj-section">
+  <div class="wrap">
+    <div class="proj-grid" id="projGrid">
+
+      <a class="proj-card" data-tags="druk elektronika robotyka" href="#">
+        <div class="proj-slider">
+          <img class="active" src="robot.JPG" alt="Stacja pogodowa IoT">
+          <img src="sterownik.JPG" alt="Stacja pogodowa IoT">
+          <div class="proj-tag-float"><span>DRUK 3D</span><span>ELEKTRONIKA</span></div>
+          <div class="proj-counter">1/2</div>
+          <div class="proj-dots"><span class="active"></span><span></span></div>
+        </div>
+        <div class="proj-body">
+          <h4>Robot mobilny</h4>
+          <p>Komunikacja bezprzewodowa + dedykowany kontroler</p>
+          <div class="proj-meta"><span>ESP32</span><span>PET-G</span><span>TPU</span></div>
+        </div>
+      </a>
+
+      <a class="proj-card" data-tags="druk" href="#">
+        <div class="proj-slider">
+          <img class="active" src="lampka1.JPG" alt="Sterownik LED RGB">
+          <img src="lampka2.JPG" alt="Sterownik LED RGB">
+          <img src="lampka3.JPG" alt="Sterownik LED RGB">
+          <div class="proj-tag-float"><span>DRUK 3D</span></div>
+          <div class="proj-counter">1/3</div>
+          <div class="proj-dots"><span class="active"></span><span></span><span></span></div>
+        </div>
+        <div class="proj-body">
+          <h4>Lampka ozdobna</h4>
+          <p>Wykorzystanie filamentu transparentnego</p>
+          <div class="proj-meta"><span>DRUK 3D</span><span>PET-G Translucent</span></div>
+        </div>
+      </a>
+
+      <a class="proj-card" data-tags="druk elektronika" href="#">
+        <div class="proj-slider">
+          <img class="active" src="streamdeck1.JPG" alt="Rama drona wyścigowego">
+          <img src="streamdeck3.JPG" alt="Rama drona wyścigowego">
+          <div class="proj-tag-float"><span>DRUK 3D</span><span>ELEKTRONIKA </span></div>
+          <div class="proj-counter">1/2</div>
+          <div class="proj-dots"><span class="active"></span><span></span></div>
+        </div>
+        <div class="proj-body">
+          <h4>Stram Deck</h4>
+          <p>niwersalna konsola z możliwośćią przypisania skrótów klawiszowych</p>
+          <div class="proj-meta"><span>PET-G</span><span>ESP 32</span><span>TFT DISPLAY</span></div>
+        </div>
+      </a>
+
+      <a class="proj-card" data-tags="druk" href="#">
+        <div class="proj-slider">
+          <img class="active" src="korytko.jpg" alt=" linefollower">
+          <img src="korytko2.jpg" alt="Robot linefollower">
+          <div class="proj-tag-float"><span>DRUK 3D</span></div>
+          <div class="proj-counter">1/2</div>
+          <div class="proj-dots"><span class="active"></span><span></span><span></span></div>
+        </div>
+        <div class="proj-body">
+          <h4>Korytko do filtra</h4>
+          <p>Korytko powstało jako część zamienna do istniejącego elementu. Do stworzenia elementu wystarczyły jedynie wymiary oraz kilka zdjęć starego elementu</p>
+          <div class="proj-meta"><span>ASA</span></div>
+        </div>
+      </a>
+
+      <a class="proj-card" data-tags="druk elektronika" href="projekt.html?id=stacja-testowa-pcb">
+        <div class="proj-slider">
+          <img class="active" src="obudowa1.jpg" alt="Stacja testowa PCB">
+          <img src="obudowa2.jpg" alt="Stacja testowa PCB">
+          <img src="obudowa3.jpg" alt="Stacja testowa PCB">
+          <div class="proj-tag-float"><span>DRUK 3D</span></div>
+          <div class="proj-counter">1/3</div>
+          <div class="proj-dots"><span class="active"></span><span></span></div>
+        </div>
+        <div class="proj-body">
+          <h4>Obudowa do płytki arduino z wyświetlaczem</h4>
+          <p>Modułowa obudowa na zamówienie mogąca pomieścić wymaganą elektronikę zastosowaną w projekcie</p>
+          <div class="proj-meta"><span>ABS</span></div>
+        </div>
+      </a>
+
+      <a class="proj-card" data-tags="druk" href="projekt.html?id=obudowa-na-wymiar">
+        <div class="proj-slider">
+          <img class="active" src="brelok1.jpg" alt="Obudowa na zamówienie">
+          <img src="brelok2.jpg" alt="Obudowa na zamówienie">
+          <div class="proj-tag-float"><span>DRUK 3D</span></div>
+          <div class="proj-counter">1/2</div>
+          <div class="proj-dots"><span class="active"></span><span></span></div>
+        </div>
+        <div class="proj-body">
+          <h4>Breloki klubu sportowego</h4>
+          <p>Projekt breloka zawierający 4 kolory</p>
+          <div class="proj-meta"><span>Druk wielokolorowy</span></div>
+        </div>
+      </a>
+
+    </div>
+
+    <div style="text-align:center; margin-top:38px;">
+      <button id="loadMoreBtn" class="filter-btn" style="padding:12px 30px; font-weight:700;">Załaduj więcej realizacji ↓</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <h2 class="display">Masz podobny pomysł?</h2>
+    <p>Napisz, co chcesz zbudować — odpowiem z wyceną i realnym terminem.</p>
+    <a href="kontakt.html" class="btn">Wyślij zapytanie</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;"><div class="cube">3D</div>AMR<span style="color:#E8A33D">3D</span></div>
+        <p>Druk 3D i projektowanie elektroniki na zamówienie. Prototypy, małe serie i kompletne urządzenia — od pomysłu do działającego egzemplarza.</p>
+        <div class="foot-formats">
+          <span>STL</span><span>OBJ</span><span>3MF</span><span>STEP</span>
+        </div>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <ul>
+          <li>adrianmarciniak111@gmail.com</li>
+          <li>Łódź, Polska</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Mapa strony</h5>
+        <ul>
+          <li><a href="strona.html">Główna</a></li>
+          <li><a href="strona.html#uslugi">Usługi</a></li>
+          <li><a href="realizacje.html">Realizacje</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Social</h5>
+        <ul>
+          <li><a href="https://www.facebook.com/adrian.marciniak.79">Facebook</a></li>
+          <li><a href="https://www.instagram.com/amr_labs1/">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 AMR 3D — wszystkie prawa zastrzeżone</span>
+    </div>
+  </div>
+</footer>
+<script>
+  // Menu mobilne
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileNav = document.getElementById('mobileNav');
+  menuToggle.addEventListener('click', function(){
+    menuToggle.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menuToggle.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+  });
+
+  // Automatyczna zmiana zdjęć w kafelkach projektów + licznik "1/N"
+  document.querySelectorAll('.proj-slider').forEach(function(slider){
+    var imgs = slider.querySelectorAll('img');
+    var dots = slider.querySelectorAll('.proj-dots span');
+    var counter = slider.querySelector('.proj-counter');
+    if(imgs.length <= 1) return;
+    var idx = 0;
+    setInterval(function(){
+      imgs[idx].classList.remove('active');
+      if(dots[idx]) dots[idx].classList.remove('active');
+      idx = (idx + 1) % imgs.length;
+      imgs[idx].classList.add('active');
+      if(dots[idx]) dots[idx].classList.add('active');
+      if(counter) counter.textContent = (idx + 1) + '/' + imgs.length;
+    }, 6000);
+  });
+
+  // Pokazywanie projektów partiami ("Załaduj więcej") + filtrowanie po kategorii
+  var PAGE_SIZE = 6;
+  var visibleCount = PAGE_SIZE;
+  var currentFilter = 'all';
+  var allCards = Array.prototype.slice.call(document.querySelectorAll('.proj-card'));
+  var loadMoreBtn = document.getElementById('loadMoreBtn');
+
+  function render(){
+    if(currentFilter === 'all'){
+      var matching = allCards;
+      matching.forEach(function(card, i){
+        card.style.display = i < visibleCount ? '' : 'none';
+      });
+      loadMoreBtn.style.display = visibleCount < matching.length ? '' : 'none';
+    } else {
+      allCards.forEach(function(card){
+        var matches = card.dataset.tags.split(' ').includes(currentFilter);
+        card.style.display = matches ? '' : 'none';
+      });
+      loadMoreBtn.style.display = 'none';
+    }
+  }
+
+  document.querySelectorAll('.filter-btn[data-filter]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.filter-btn[data-filter]').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentFilter = btn.dataset.filter;
+      if(currentFilter === 'all') visibleCount = PAGE_SIZE;
+      render();
+    });
+  });
+
+  loadMoreBtn.addEventListener('click', function(){
+    visibleCount += PAGE_SIZE;
+    render();
+  });
+
+  render();
+</script>
+
+</body>
+</html>

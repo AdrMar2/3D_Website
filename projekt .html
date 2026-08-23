@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Realizacja — AMR 3D</title>
+<meta id="metaDesc" name="description" content="Szczegóły realizacji AMR 3D">
+
+<meta id="ogTitle" property="og:type" content="website">
+<meta id="ogTitleTag" property="og:title" content="Realizacja — AMR 3D">
+<meta id="ogDesc" property="og:description" content="Szczegóły realizacji AMR 3D">
+<meta id="ogImage" property="og:image" content="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1200&q=80">
+<meta property="og:locale" content="pl_PL">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Manrope:wght@700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter', sans-serif; color:#1E2A3C; background:#fff;}
+  a{color:inherit; text-decoration:none;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  img{max-width:100%; display:block;}
+  ul{list-style:none;}
+
+  :root{
+    --navy-dark:#14181F;
+    --navy:#1D222B;
+    --navy-light:#2A303B;
+    --orange:#E8A33D;
+    --blue:#2F8F5B;
+    --ink:#14181F;
+    --muted:#5C6470;
+    --bg-light:#F4F5F7;
+    --line:#E1E3E8;
+  }
+  .display{ font-family:'Sora', sans-serif; }
+  .wrap{ max-width:1200px; margin:0 auto; padding:0 32px; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    background:var(--navy-dark); display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; position:sticky; top:0; z-index:50; border-bottom:1px solid rgba(255,255,255,.06);
+  }
+  .logo{ display:flex; align-items:center; gap:8px; font-family:'Manrope', sans-serif; font-weight:800; font-size:17px; color:#fff; }
+  .logo .cube{ width:26px; height:26px; background:var(--orange); border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; }
+  nav{ display:flex; gap:30px; }
+  nav a{ font-size:13.5px; font-weight:600; color:#C7D0DC; }
+  nav a:hover, nav a.active{ color:#fff; }
+  .cta-header{ background:var(--orange); color:#14181F; padding:11px 22px; border-radius:6px; font-size:13px; font-weight:800; letter-spacing:.02em; }
+
+  .menu-toggle{ display:none; flex-direction:column; gap:5px; background:none; padding:6px; }
+  .menu-toggle span{ width:22px; height:2px; background:#fff; border-radius:2px; transition:.2s; }
+  .menu-toggle.open span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+  .menu-toggle.open span:nth-child(2){ opacity:0; }
+  .menu-toggle.open span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  .mobile-nav{ display:none; position:fixed; top:63px; left:0; right:0; background:var(--navy-dark); border-bottom:1px solid rgba(255,255,255,.08); padding:10px 32px 26px; flex-direction:column; gap:4px; z-index:49; }
+  .mobile-nav.open{ display:flex; }
+  .mobile-nav a{ font-size:14.5px; font-weight:600; color:#C7D0DC; padding:13px 0; border-bottom:1px solid rgba(255,255,255,.06); }
+  .mobile-nav .cta-header{ text-align:center; margin-top:14px; }
+
+  /* ---------- BREADCRUMB ---------- */
+  .breadcrumb{ padding:22px 0; font-size:12.5px; color:var(--muted); }
+  .breadcrumb a{ color:var(--muted); font-weight:600; }
+  .breadcrumb a:hover{ color:var(--ink); }
+
+  /* ---------- PROJECT DETAIL ---------- */
+  .proj-detail{ padding:10px 0 70px; }
+  .detail-grid{ display:grid; grid-template-columns:1.15fr 1fr; gap:48px; align-items:start; }
+
+  .gallery-main{ position:relative; aspect-ratio:4/3; border-radius:14px; overflow:hidden; background:#EAEAEA; }
+  .gallery-main img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .5s ease; }
+  .gallery-main img.active{ opacity:1; }
+  .gallery-nav-btn{ position:absolute; top:50%; transform:translateY(-50%); width:38px; height:38px; border-radius:50%; background:rgba(20,24,31,.65); color:#fff; display:flex; align-items:center; justify-content:center; font-size:16px; z-index:3; }
+  .gallery-nav-btn:hover{ background:rgba(20,24,31,.9); }
+  .gallery-prev{ left:14px; }
+  .gallery-next{ right:14px; }
+  .gallery-counter{ position:absolute; bottom:14px; right:14px; font-family:'JetBrains Mono',monospace; font-size:11px; background:rgba(27,40,57,.85); color:#fff; padding:5px 10px; border-radius:5px; z-index:3; }
+  .gallery-thumbs{ display:flex; gap:10px; margin-top:12px; flex-wrap:wrap; }
+  .gallery-thumbs img{ width:66px; height:50px; object-fit:cover; border-radius:6px; cursor:pointer; opacity:.55; border:2px solid transparent; transition:.15s; }
+  .gallery-thumbs img.active{ opacity:1; border-color:var(--orange); }
+
+  .detail-tags{ display:flex; gap:8px; margin-bottom:16px; }
+  .detail-tags span{ font-family:'JetBrains Mono',monospace; font-size:10px; background:var(--navy); color:#fff; padding:5px 10px; border-radius:4px; }
+  .detail-body h1{ font-family:'Manrope', sans-serif; font-weight:800; font-size:30px; margin-bottom:16px; }
+  .detail-body .lead{ font-size:14.5px; color:var(--muted); line-height:1.7; margin-bottom:22px; }
+  .detail-body .full-desc{ font-size:14px; color:var(--ink); line-height:1.75; margin-bottom:28px; }
+  .detail-body .full-desc p{ margin-bottom:14px; }
+
+  .spec-box{ background:var(--bg-light); border-radius:12px; padding:22px; margin-bottom:28px; }
+  .spec-box h5{ font-family:'Manrope', sans-serif; font-size:13px; font-weight:700; margin-bottom:14px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); }
+  .spec-row{ display:flex; justify-content:space-between; font-size:13px; padding:9px 0; border-bottom:1px solid var(--line); }
+  .spec-row:last-child{ border-bottom:none; }
+  .spec-row span:first-child{ color:var(--muted); }
+  .spec-row span:last-child{ font-weight:600; font-family:'JetBrains Mono',monospace; font-size:12.5px; }
+
+  .detail-cta{ background:var(--orange); color:#14181F; padding:14px 28px; border-radius:8px; font-weight:800; font-size:14px; display:inline-block; }
+
+  .related{ padding:60px 0 90px; background:var(--bg-light); }
+  .related .sec-head{ text-align:center; margin-bottom:36px; }
+  .related .eyebrow-line{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--blue); letter-spacing:.1em; margin-bottom:12px; }
+  .related h2{ font-family:'Manrope', sans-serif; font-weight:800; font-size:24px; }
+  .related-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .related-card{ display:block; border:1px solid var(--line); border-radius:12px; overflow:hidden; background:#fff; transition:transform .15s; }
+  .related-card:hover{ transform:translateY(-4px); box-shadow:0 16px 30px rgba(30,42,60,.1); }
+  .related-card img{ aspect-ratio:4/3; object-fit:cover; width:100%; }
+  .related-card .rc-body{ padding:16px; }
+  .related-card h4{ font-family:'Manrope', sans-serif; font-size:14px; font-weight:700; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--navy-dark); color:#B7C2CF; padding:60px 0 30px; }
+  .foot-grid{ display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.08); }
+  .foot-grid h5{ color:#fff; font-size:13px; font-weight:700; margin-bottom:16px; letter-spacing:.04em; text-transform:uppercase; }
+  .foot-grid p{ font-size:13px; line-height:1.6; color:#9FB0C2; margin-bottom:16px; max-width:34ch; }
+  .foot-grid li{ font-size:13px; margin-bottom:10px; color:#B7C2CF; }
+  .foot-grid li:hover{ color:#fff; }
+  .foot-formats{ display:flex; gap:8px; flex-wrap:wrap; }
+  .foot-formats span{ font-family:'JetBrains Mono',monospace; font-size:11px; border:1px solid rgba(255,255,255,.15); padding:6px 10px; border-radius:5px; color:#C7D0DC; }
+  .foot-bottom{ padding-top:22px; font-size:12px; color:#7488A0; }
+
+  @media (max-width:900px){
+    nav{ display:none; }
+    .menu-toggle{ display:flex; }
+    #ctaHeaderMain{ display:none; }
+    .detail-grid{ grid-template-columns:1fr; }
+    .related-grid{ grid-template-columns:1fr; }
+    .foot-grid{ grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><div class="cube">3D</div>AMR<span style="color:#E8A33D">3D</span></div>
+  <nav>
+    <a href="strona.html">Główna</a>
+    <a href="strona.html#uslugi">Usługi</a>
+    <a href="realizacje.html" class="active">Realizacje</a>
+    <a href="kontakt.html">Kontakt</a>
+  </nav>
+  <a href="kontakt.html" class="cta-header" id="ctaHeaderMain">ZAMÓW WYCENĘ</a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="strona.html">Główna</a>
+  <a href="strona.html#uslugi">Usługi</a>
+  <a href="realizacje.html" class="active">Realizacje</a>
+  <a href="kontakt.html">Kontakt</a>
+  <a href="kontakt.html" class="cta-header">ZAMÓW WYCENĘ</a>
+</div>
+
+<div class="wrap">
+  <div class="breadcrumb"><a href="realizacje.html">Realizacje</a> / <span id="crumbTitle">...</span></div>
+</div>
+
+<section class="proj-detail">
+  <div class="wrap">
+    <div class="detail-grid">
+
+      <div>
+        <div class="gallery-main" id="galleryMain">
+          <button class="gallery-nav-btn gallery-prev" id="galPrev">‹</button>
+          <button class="gallery-nav-btn gallery-next" id="galNext">›</button>
+          <div class="gallery-counter" id="galCounter">1/1</div>
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+      </div>
+
+      <div class="detail-body">
+        <div class="detail-tags" id="detailTags"></div>
+        <h1 class="display" id="detailTitle">Ładowanie...</h1>
+        <p class="lead" id="detailLead"></p>
+        <div class="full-desc" id="detailFull"></div>
+
+        <div class="spec-box">
+          <h5>Specyfikacja</h5>
+          <div id="specRows"></div>
+        </div>
+
+        <a href="kontakt.html" class="detail-cta">Wyceń podobny projekt</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="related">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow-line">ZOBACZ TAKŻE</div>
+      <h2 class="display">Inne realizacje</h2>
+    </div>
+    <div class="related-grid" id="relatedGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;"><div class="cube">3D</div>AMR<span style="color:#E8A33D">3D</span></div>
+        <p>Druk 3D i projektowanie elektroniki na zamówienie. Prototypy, małe serie i kompletne urządzenia — od pomysłu do działającego egzemplarza.</p>
+        <div class="foot-formats">
+          <span>STL</span><span>OBJ</span><span>3MF</span><span>STEP</span>
+        </div>
+      </div>
+      <div>
+        <h5>Kontakt</h5>
+        <ul>
+          <li>+48 600 000 000</li>
+          <li>kontakt@amr3d.pl</li>
+          <li>Łódź, Polska</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Mapa strony</h5>
+        <ul>
+          <li><a href="strona.html">Główna</a></li>
+          <li><a href="strona.html#uslugi">Usługi</a></li>
+          <li><a href="realizacje.html">Realizacje</a></li>
+          <li><a href="kontakt.html">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Social</h5>
+        <ul>
+          <li>Facebook</li>
+          <li>Instagram</li>
+          <li>LinkedIn</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 AMR 3D — wszystkie prawa zastrzeżone</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- BAZA PROJEKTÓW ----------
+  // Żeby dodać nową realizację ze szczegółową podstroną: dopisz kolejny obiekt do tej listy
+  // oraz dodaj kafelek na realizacje.html linkujący do projekt.html?id=TU_WPISZ_ID
+  var PROJECTS = {
+    'stacja-pogodowa': {
+      title: 'Stacja pogodowa IoT',
+      tags: ['DRUK 3D', 'ELEKTRONIKA'],
+      lead: 'Zaprojektowana i wydrukowana obudowa zewnętrzna, wewnątrz autorska płytka z czujnikiem BME280 i modułem ESP32 wysyłającym dane na żywo przez Wi-Fi.',
+      images: [
+        'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1000&q=80',
+        'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&q=80'
+      ],
+      fullDesc: [
+        'Projekt powstał z myślą o monitoringu warunków pogodowych w ogrodzie klienta — temperatury, wilgotności i ciśnienia, z podglądem na żywo z poziomu telefonu.',
+        'Obudowa została zaprojektowana od zera pod konkretny czujnik i płytkę, z kanałami wentylacyjnymi chroniącymi elektronikę przed wilgocią, oraz dodatkowym rewizyjnym zamknięciem na dole ułatwiającym wymianę baterii.',
+        'Wewnątrz zamontowano autorską płytkę PCB z modułem ESP32, czujnikiem BME280 i przetwornicą zasilania — całość skonfigurowana do przesyłania odczytów przez Wi-Fi co 5 minut.'
+      ],
+      specs: [['Materiał obudowy','PET-G'], ['Mikrokontroler','ESP32'], ['Czujnik','BME280'], ['Zasilanie','Bateria + panel solarny'], ['Czas realizacji','9 dni']]
+    },
+    'sterownik-led': {
+      title: 'Sterownik LED RGB',
+      tags: ['ELEKTRONIKA'],
+      lead: 'Autorska płytka sterująca na ESP32 z aplikacją mobilną do zmiany kolorów i efektów oświetlenia w czasie rzeczywistym.',
+      images: [
+        'https://images.unsplash.com/photo-1608564697071-ddf911d81370?w=1000&q=80',
+        'https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?w=1000&q=80',
+        'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1000&q=80'
+      ],
+      fullDesc: [
+        'Klient potrzebował sterownika do taśm LED RGB z możliwością sterowania z telefonu, bez konieczności montażu dodatkowego pilota.',
+        'Zaprojektowałem i wylutowałem płytkę PCB z ESP32, tranzystorami MOSFET sterującymi kanałami R/G/B oraz zabezpieczeniem przeciwzwarciowym.',
+        'Sterowanie odbywa się przez lokalną sieć Wi-Fi — bez chmury i bez rejestracji konta, co było jednym z wymogów klienta.'
+      ],
+      specs: [['Mikrokontroler','ESP32'], ['Montaż','SMD'], ['Kanały wyjściowe','3× RGB'], ['Sterowanie','Wi-Fi, aplikacja mobilna'], ['Czas realizacji','12 dni']]
+    },
+    'rama-drona': {
+      title: 'Rama drona wyścigowego',
+      tags: ['DRUK 3D'],
+      lead: 'Lekka, sztywna konstrukcja z nylonu wzmocnionego włóknem węglowym, zaprojektowana pod kątem odporności na uderzenia.',
+      images: [
+        'https://images.unsplash.com/photo-1608501078713-8e445a709b39?w=1000&q=80',
+        'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=1000&q=80'
+      ],
+      fullDesc: [
+        'Rama zaprojektowana pod konkretny zestaw silników i regulatorów klienta, z myślą o zawodach dronów wyścigowych FPV.',
+        'Głównym wyzwaniem było połączenie niskiej wagi z odpornością na uderzenia przy upadkach z dużą prędkością — stąd wybór nylonu wzmocnionego włóknem węglowym zamiast standardowego PLA.',
+        'Model przeszedł kilka iteracji wydruków testowych, zanim finalna wersja spełniła założenia wagowe przy zachowanej sztywności ramion.'
+      ],
+      specs: [['Materiał','Nylon (PA) + włókno węglowe'], ['Waga ramy','ok. 68 g'], ['Rozstaw silników','220 mm'], ['Czas realizacji','6 dni (z iteracjami)']]
+    },
+    'robot-linefollower': {
+      title: 'Robot linefollower',
+      tags: ['DRUK 3D', 'ROBOTYKA'],
+      lead: 'Podwozie drukowane w 3D, sterownik silników na ESP32 oraz zestaw czujników linii — projekt edukacyjny gotowy do zawodów.',
+      images: [
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1000&q=80',
+        'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1000&q=80'
+      ],
+      fullDesc: [
+        'Projekt zrealizowany dla koła robotyki szkolnej — kompletny robot podążający za linią, gotowy do udziału w zawodach.',
+        'Podwozie zaprojektowałem pod konkretne silniki i koła, z miejscem montażowym na baterię, sterownik i pas czujników odbiciowych z przodu.',
+        'Sterownik na ESP32 obsługuje regulację PID prędkości silników w zależności od odczytu z czujników, co pozwala robotowi płynnie pokonywać zakręty.'
+      ],
+      specs: [['Materiał podwozia','PLA'], ['Mikrokontroler','ESP32'], ['Czujniki','5× czujnik odbiciowy IR'], ['Czas realizacji','10 dni']]
+    },
+    'stacja-testowa-pcb': {
+      title: 'Stacja testowa do płytek PCB',
+      tags: ['ELEKTRONIKA'],
+      lead: 'Zaprojektowana i wydrukowana obudowa stanowiska pomiarowego do testowania prototypowych płytek przed montażem seryjnym.',
+      images: [
+        'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000&q=80',
+        'https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1000&q=80'
+      ],
+      fullDesc: [
+        'Klient produkujący małe serie własnych płytek PCB potrzebował prostego stanowiska do szybkiego testowania każdej sztuki przed wysyłką.',
+        'Zaprojektowałem obudowę mieszczącą zasilacz, gniazda pomiarowe i miejsce na multimetr, z wyprowadzonymi na front złączami testowymi dopasowanymi do konkretnego wzoru płytki klienta.',
+        'Dzięki temu test jednej płytki trwa teraz kilkanaście sekund zamiast ręcznego podłączania przewodów za każdym razem.'
+      ],
+      specs: [['Materiał obudowy','ABS'], ['Złącza testowe','Dopasowane pod wzór PCB klienta'], ['Czas realizacji','8 dni']]
+    },
+    'obudowa-na-wymiar': {
+      title: 'Obudowa na wymiar',
+      tags: ['DRUK 3D'],
+      lead: 'Indywidualnie zaprojektowana obudowa pod gotowe podzespoły elektroniczne klienta — dopasowana co do milimetra.',
+      images: [
+        'https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1000&q=80',
+        'https://images.unsplash.com/photo-1567789884554-0b844b597180?w=1000&q=80'
+      ],
+      fullDesc: [
+        'Klient miał gotowy zestaw elektroniki bez obudowy i potrzebował rozwiązania dopasowanego dokładnie do swoich podzespołów.',
+        'Na podstawie przesłanych wymiarów i zdjęć zaprojektowałem obudowę z odpowiednimi otworami montażowymi, wentylacją i wyprowadzeniami na złącza — bez ingerencji w oryginalną elektronikę.',
+        'Materiał dobrałem pod kątem odporności na promieniowanie UV, ponieważ urządzenie miało pracować na zewnątrz.'
+      ],
+      specs: [['Materiał','ASA'], ['Odporność','UV, zastosowanie zewnętrzne'], ['Czas realizacji','5 dni']]
+    }
+  };
+
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+  var project = PROJECTS[id];
+
+  if(!project){
+    document.getElementById('detailTitle').textContent = 'Nie znaleziono realizacji';
+    document.getElementById('detailLead').textContent = 'Ten projekt nie istnieje lub został usunięty.';
+    document.getElementById('crumbTitle').textContent = 'Nie znaleziono';
+  } else {
+    document.getElementById('pageTitle').textContent = project.title + ' — AMR 3D';
+    document.getElementById('metaDesc').setAttribute('content', project.lead);
+    document.getElementById('ogTitleTag').setAttribute('content', project.title + ' — AMR 3D');
+    document.getElementById('ogDesc').setAttribute('content', project.lead);
+    document.getElementById('ogImage').setAttribute('content', project.images[0]);
+    document.getElementById('crumbTitle').textContent = project.title;
+    document.getElementById('detailTitle').textContent = project.title;
+    document.getElementById('detailLead').textContent = project.lead;
+
+    document.getElementById('detailTags').innerHTML = project.tags.map(function(t){ return '<span>' + t + '</span>'; }).join('');
+    document.getElementById('detailFull').innerHTML = project.fullDesc.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+    document.getElementById('specRows').innerHTML = project.specs.map(function(s){
+      return '<div class="spec-row"><span>' + s[0] + '</span><span>' + s[1] + '</span></div>';
+    }).join('');
+
+    // Galeria
+    var galleryMain = document.getElementById('galleryMain');
+    var galCounter = document.getElementById('galCounter');
+    var galThumbs = document.getElementById('galleryThumbs');
+    var curIdx = 0;
+
+    project.images.forEach(function(src, i){
+      var img = document.createElement('img');
+      img.src = src;
+      img.alt = project.title;
+      if(i === 0) img.classList.add('active');
+      galleryMain.appendChild(img);
+
+      var thumb = document.createElement('img');
+      thumb.src = src;
+      thumb.alt = project.title + ' — miniatura ' + (i+1);
+      if(i === 0) thumb.classList.add('active');
+      thumb.addEventListener('click', function(){ showImage(i); });
+      galThumbs.appendChild(thumb);
+    });
+
+    function showImage(i){
+      var imgs = galleryMain.querySelectorAll('img');
+      var thumbs = galThumbs.querySelectorAll('img');
+      imgs[curIdx].classList.remove('active');
+      thumbs[curIdx].classList.remove('active');
+      curIdx = (i + imgs.length) % imgs.length;
+      imgs[curIdx].classList.add('active');
+      thumbs[curIdx].classList.add('active');
+      galCounter.textContent = (curIdx + 1) + '/' + imgs.length;
+    }
+
+    galCounter.textContent = '1/' + project.images.length;
+    document.getElementById('galPrev').addEventListener('click', function(){ showImage(curIdx - 1); });
+    document.getElementById('galNext').addEventListener('click', function(){ showImage(curIdx + 1); });
+    if(project.images.length <= 1){
+      document.getElementById('galPrev').style.display = 'none';
+      document.getElementById('galNext').style.display = 'none';
+    }
+
+    // Powiązane realizacje (inne niż bieżąca, maks. 3)
+    var relatedGrid = document.getElementById('relatedGrid');
+    Object.keys(PROJECTS).filter(function(k){ return k !== id; }).slice(0, 3).forEach(function(k){
+      var p = PROJECTS[k];
+      var a = document.createElement('a');
+      a.className = 'related-card';
+      a.href = 'projekt.html?id=' + k;
+      a.innerHTML = '<img src="' + p.images[0] + '" alt="' + p.title + '"><div class="rc-body"><h4>' + p.title + '</h4></div>';
+      relatedGrid.appendChild(a);
+    });
+  }
+
+  // Menu mobilne
+  var menuToggle = document.getElementById('menuToggle');
+  var mobileNav = document.getElementById('mobileNav');
+  menuToggle.addEventListener('click', function(){
+    menuToggle.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+  });
+  mobileNav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menuToggle.classList.remove('open');
+      mobileNav.classList.remove('open');
+    });
+  });
+</script>
+
+</body>
+</html>
